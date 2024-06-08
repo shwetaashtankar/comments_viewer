@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React  from "react";
+import { Container, AppBar, Toolbar, Typography } from "@mui/material";
+import DisplayData from "./components/DisplayData";
+import SearchBar from "./components/Searchbar";
+
 
 function App() {
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="md">
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">Comments Viewer</Typography>
+        </Toolbar>
+      </AppBar>
+      <SearchBar value={searchTerm} onChange={handleSearchTermChange} />
+      <DisplayData searchTerm={searchTerm} />
+    </Container>
   );
 }
 
